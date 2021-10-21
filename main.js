@@ -13,6 +13,7 @@ function gameLoop(timestamp) {
   let deltaTime = timestamp - lastTime;
   lastTime = timestamp;
   ctx.clearRect(0, 0, 800, 600);
+  game.update(deltaTime);
   game.draw(ctx);
 
   requestAnimationFrame(gameLoop);

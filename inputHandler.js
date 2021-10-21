@@ -1,7 +1,6 @@
 export default class InputHandler {
     constructor(player) {
         document.addEventListener('keydown', (event) => {
-            console.log(event.code);
             switch(event.code) {
                 case 'ArrowRight':
                     player.moveRight();
