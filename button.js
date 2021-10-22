@@ -1,7 +1,7 @@
 import isHovered from "./isHovered.js";
 
 export default class Button {
-    constructor(text, gameHeight, gameWidth, ctx) {
+    constructor(text, gameHeight, gameWidth, ctx, onClick, x, y) {
         this.text = text;
         
         this.gameHeight = gameHeight;
@@ -9,9 +9,9 @@ export default class Button {
 
         this.path = new Path2D();
         this.height = 100;
-        this.width = 700;
-        this.x = this.gameWidth / 2 - this.width / 2;
-        this.y = this.gameHeight / 2 - this.height / 2
+        this.width = 400;
+        this.x = x;
+        this.y = y;
 
         //this.squares = [new Square(0, 0)];
     }
@@ -28,7 +28,11 @@ export default class Button {
         ctx.fillStyle = 'black';
         ctx.font = '50px arial'
         ctx.textAlign = 'center';
-        ctx.fillText(this.text, canvas.width/2, this.y + this.height / 1.4)
-        //this.squares.forEach((square) => square.draw(ctx));
+        ctx.textBaseline = 'middle'
+
+        const fix = ctx.measureText("M").actualBoundingBoxDescent / 2;
+        const textWidth = ctx.measureText(this.text).width;
+
+        ctx.fillText(this.text, (canvas.width/2) + (this.x - (this.gameWidth / 2 - this.width / 2)), (this.height/2) + this.y + fix)
     }
 }
