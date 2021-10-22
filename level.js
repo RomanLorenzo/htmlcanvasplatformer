@@ -3,7 +3,7 @@ import Player from "./player.js";
 import Coin from "./coin.js";
 import Portal from './portal.js';
 
-export default class Game {
+export default class Level {
     constructor(gameHeight, gameWidth) {
         this.width = gameWidth;
         this.height = gameHeight;

@@ -15,10 +15,11 @@ class Square {
 
 export default class Menu {
     constructor(gameHeight, gameWidth, ctx, onPlay) {
+        this.onPlay = onPlay;
         this.gameHeight = gameHeight;
         this.gameWidth = gameWidth;
 
-        this.button = new Button('Play', gameHeight, gameWidth, ctx, null, 200, 250);
+        this.button = new Button('Play', gameHeight, gameWidth, ctx, onPlay, 200, 250);
         this.button2 = new Button('Tutorial', gameHeight, gameWidth, ctx, null, 200, 400);
 
         this.elements = [this.button, this.button2];

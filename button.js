@@ -2,11 +2,14 @@ import isHovered from "./isHovered.js";
 
 export default class Button {
     constructor(text, gameHeight, gameWidth, ctx, onClick, x, y) {
+        this.onClick = onClick;
+
         this.text = text;
         
         this.gameHeight = gameHeight;
         this.gameWidth = gameWidth;
 
+        this.clicked = false;
         this.path = new Path2D();
         this.height = 100;
         this.width = 400;
@@ -17,7 +20,15 @@ export default class Button {
     }
 
     update(deltaTime, mouseEvent, ctx) {
+        if (!mouseEvent) return;
         this.isHovered = isHovered(mouseEvent, ctx, this.path);
+
+        if (this.isHovered && mouseEvent.down) {
+            this.onClick();
+            return this.clicked = true;
+        };
+
+        this.clicked = false;
     }
 
     draw(ctx) {
