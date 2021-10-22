@@ -16,7 +16,7 @@ export default class Player {
         this.maxSpeedY = 20;
         this.gravity = 1;
 
-        this.x = 0;
+        this.x = 50;
         this.y = 200;
     }
 

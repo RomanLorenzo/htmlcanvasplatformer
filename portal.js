@@ -7,8 +7,8 @@ export default class Portal {
         this.gameHeight = gameHeight;
         this.gameWidth = gameWidth;
 
-        this.height = 40;
-        this.width = 40;
+        this.height = 120;
+        this.width = 30;
 
         this.x = gameWidth - this.width;
         this.y = gameHeight - this.height;
@@ -21,7 +21,7 @@ export default class Portal {
 
         if (this.hidden) return;
         ctx.fillStyle = 'green';
-        ctx.fillRect(this.x, this.y, this.height, this.width);
+        ctx.fillRect(this.x, this.y, this.width, this.height);
     }
 
     update(deltaTime, game) {

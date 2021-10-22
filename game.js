@@ -2,37 +2,23 @@ import InputHandler from "./inputHandler.js";
 import Player from "./player.js";
 import Coin from "./coin.js";
 import Portal from './portal.js';
-import { detectCollision } from "./collision.js";
+import Level from './level.js';
+import Menu from './menu.js';
 
 export default class Game {
     constructor(gameHeight, gameWidth) {
-        this.width = gameWidth;
-        this.height = gameHeight;
+        window.addEventListener('mousemove', (event) => {
+            this.mouseEvent = event;
+        })
 
-        this.player = new Player(gameHeight, gameWidth);
-        this.portal = new Portal(gameHeight, gameWidth, 0, 0, this.finishGame)
-
-        this.coins = [];
-        for (let i = 0; i < 5; i++) {
-            this.coins.push(new Coin(this.height, this.width, 200 + (i * 100), 540))
-        }
-
-        this.gameObjects = [this.player, this.portal, ...this.coins];
-        this.inputHandler = new InputHandler(this.player);
+        this.level = new Menu(gameHeight, gameWidth)
     }
 
-    update(deltaTime) {
-        this.gameObjects.forEach((item) => item.update(deltaTime, this));
-        // if (detectCollision(this.player, this.coins[0])) {
-        //     this.coins[0].hidden = true;
-        // }
-    }
-
-    finishGame() {
-        console.log('win!')
+    update(deltaTime, ctx) {
+        this.level.update(deltaTime, this.mouseEvent, ctx);
     }
 
     draw(ctx) {
-        this.gameObjects.forEach((item) => item.draw(ctx));
+        this.level.draw(ctx);
     }
 }
