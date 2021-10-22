@@ -1,4 +1,4 @@
-import isHovered from "./isHovered.js";
+import isHovered from "./utility/isHovered.js";
 
 export default class Button {
     constructor(text, gameHeight, gameWidth, ctx, onClick, x, y) {

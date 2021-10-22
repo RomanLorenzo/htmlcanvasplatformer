@@ -1,12 +1,9 @@
-import { detectCollision } from "./collision.js";
+import { detectCollision } from "../utility/collision.js";
 
 export default class Coin {
     constructor(gameHeight, gameWidth, x, y) {
         this.gameHeight = gameHeight;
         this.gameWidth = gameWidth;
-
-        this.img = new Image();
-        this.img.src = './coin.png';
 
         this.height = 40;
         this.width = 40;
@@ -18,10 +15,8 @@ export default class Coin {
     }
 
     draw(ctx) {
-        ctx.imageSmoothingEnabled = false;
-
         if (this.hidden) return;
-        ctx.drawImage(this.img, 0, 0, 8, 8, this.x, this.y, this.width, this.height);
+        ctx.fillRect(0, 0, 50, 50)
     }
 
     update(deltaTime, game) {

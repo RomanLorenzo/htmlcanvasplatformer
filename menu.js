@@ -1,5 +1,5 @@
 import Button from "./button.js";
-import isHovered from "./isHovered.js";
+import isHovered from "./utility/isHovered.js";
 
 class Square {
     constructor(x, y) {

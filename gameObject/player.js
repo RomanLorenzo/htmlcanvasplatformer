@@ -4,7 +4,7 @@ export default class Player {
         this.gameWidth = gameWidth;
 
         this.img = new Image();
-        this.img.src = './pixel.png';
+        this.img.src = './img/pixel.png';
 
         this.height = 110;
         this.width = 80;

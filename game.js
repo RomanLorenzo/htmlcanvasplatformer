@@ -1,7 +1,4 @@
-import InputHandler from "./inputHandler.js";
-import Player from "./player.js";
-import Coin from "./coin.js";
-import Portal from './portal.js';
+import Portal from './gameObject/portal.js';
 import Level from './level.js';
 import Menu from './menu.js';
 
@@ -11,6 +8,7 @@ export default class Game {
         this.count = 30;
         this.gameHeight = gameHeight;
         this.gameWidth = gameWidth;
+        this.level = new Menu(gameHeight, gameWidth, null, this.onPlay)
 
         window.addEventListener('mousemove', (event) => {
             this.mouseEvent = event;
@@ -24,7 +22,6 @@ export default class Game {
             this.mouseEvent.down = false;
         })
 
-        this.level = new Menu(gameHeight, gameWidth, null, this.onPlay)
     }
 
     onPlay() {

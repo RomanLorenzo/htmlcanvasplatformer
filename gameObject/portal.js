@@ -1,4 +1,4 @@
-import { detectCollision } from "./collision.js";
+import { detectCollision } from "../utility/collision.js";
 
 export default class Portal {
     constructor(gameHeight, gameWidth, x, y, finishGame) {

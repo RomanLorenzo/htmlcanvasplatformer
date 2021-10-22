@@ -1,5 +1,3 @@
-import Player from './player.js'
-import InputHandler from './inputHandler.js';
 import Game from './game.js';
 
 const canvas = document.getElementById('canvas');
@@ -14,7 +12,7 @@ let lastTime = 0;
 function gameLoop(timestamp) {
   let deltaTime = timestamp - lastTime;
   lastTime = timestamp;
-  ctx.clearRect(0, 0, 800, 600);
+  ctx.clearRect(0, 0, 804, 604);
   game.update(deltaTime, ctx);
   game.draw(ctx);
 

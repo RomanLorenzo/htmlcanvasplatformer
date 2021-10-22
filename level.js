@@ -1,7 +1,7 @@
-import InputHandler from "./inputHandler.js";
-import Player from "./player.js";
-import Coin from "./coin.js";
-import Portal from './portal.js';
+import InputHandler from "./utility/inputHandler.js";
+import Player from "./gameObject/player.js";
+import Coin from "./gameObject/coin.js";
+import Portal from './gameObject/portal.js';
 
 export default class Level {
     constructor(gameHeight, gameWidth) {
