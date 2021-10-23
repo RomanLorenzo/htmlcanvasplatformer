@@ -20,12 +20,12 @@ export default class Level {
 
         this.platforms = [];
         for (let i = 0; i < 2; i++) {
-            this.platforms.push(new Platform(this.gameHeight, this.gameWidth, 300 + (i * 300), 0))
+            this.platforms.push(new Platform(this.gameHeight, this.gameWidth, 100 + (i * 280), 0))
         }
 
 
         this.gameObjects = [this.player, ...this.coins, ...this.platforms];
-        this.inputHandler = new InputHandler(this.player);
+        this.inputHandler = new InputHandler(this.player, this.platforms);
     }
 
     update(deltaTime) {

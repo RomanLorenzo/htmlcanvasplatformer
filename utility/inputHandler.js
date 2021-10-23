@@ -1,5 +1,5 @@
 export default class InputHandler {
-    constructor(player) {
+    constructor(player, platforms) {
         document.addEventListener('keydown', (event) => {
             switch(event.code) {
                 case 'ArrowRight':
@@ -9,9 +9,20 @@ export default class InputHandler {
                     player.moveLeft();
                     break;
                 case 'ArrowUp':
-                    if (player.y === player.gameHeight - player.height) {
+                    if (
+                        player.y === player.gameHeight - player.height) {
                         player.jump();
                     }
+
+                    platforms.forEach((platform) => {
+                        if  ((
+                            player.x + player.width > platform.x &&
+                            platform.x + platform.width > player.x &&
+                            player.y >= player.gameHeight - player.height - platform.height) &&
+                            (player.y !== player.gameHeight - player.height)) {
+                                player.jump();
+                            }
+                    })
                     break;
             }
         })
