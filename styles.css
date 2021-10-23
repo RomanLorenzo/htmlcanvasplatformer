@@ -4,6 +4,8 @@
     box-sizing: border-box;
 }
 
-canvas {
+div {
     border: 2px solid black;
+    height: 604px;
+    width: 804px;
 }

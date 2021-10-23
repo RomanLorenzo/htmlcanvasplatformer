@@ -1,27 +1,25 @@
 import { detectCollision } from "../utility/collision.js";
 
-export default class Coin {
+export default class Platform {
     constructor(gameHeight, gameWidth, x, y) {
         this.gameHeight = gameHeight;
         this.gameWidth = gameWidth;
 
-        this.height = 40;
-        this.width = 40;
+        this.height = 100;
+        this.width = 200;
 
         this.x = x;
-        this.y = y;
+        this.y = 500;
 
         this.hidden = false;
     }
 
     draw(ctx) {
         if (this.hidden) return;
-        ctx.fillRect(0, 0, 50, 50)
+        ctx.fillRect(this.x, this.y, this.width, this.height)
     }
 
     update(deltaTime, game) {
         if (!deltaTime) return;
-
-        if (detectCollision(game.player, this)) this.hidden = true;
     }
 }

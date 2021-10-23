@@ -5,6 +5,7 @@ import Menu from './menu.js';
 export default class Game {
     constructor(gameHeight, gameWidth) {
         this.onPlay = this.onPlay.bind(this);
+
         this.count = 30;
         this.gameHeight = gameHeight;
         this.gameWidth = gameWidth;
@@ -25,7 +26,7 @@ export default class Game {
     }
 
     onPlay() {
-        this.level = new Level(this.gameHeight, this.gameWidth)
+        this.level = new Level(this.gameHeight, this.gameWidth, this)
     }
 
     update(deltaTime, ctx) {

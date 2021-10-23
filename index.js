@@ -5,7 +5,7 @@ canvas.width = canvas.getBoundingClientRect().width;
 canvas.height = canvas.getBoundingClientRect().height;
 const ctx = canvas.getContext('2d');
 
-const game = new Game(canvas.height, canvas.width);
+const game = new Game(600, 800);
 
 let lastTime = 0;
 
