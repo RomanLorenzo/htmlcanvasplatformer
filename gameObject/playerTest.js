@@ -2,9 +2,9 @@ import checkXCollision from "../utility/checkXCollision.js";
 import checkYCollision from "../utility/checkYCollision.js";
 
 export default class Player {
-    constructor(gameHeight, gameWidth, game) {
-        this.gameHeight = gameHeight;
-        this.gameWidth = gameWidth;
+    constructor(game, game) {
+        this.gameHeight = game.height;
+        this.gameWidth = game.width;
         this.game = game;
 
         this.imgs = [];

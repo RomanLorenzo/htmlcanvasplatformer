@@ -21,19 +21,19 @@ export default class Level {
                 this.levelBackground.src = './img/cityskyline.png';
                 this.levelText = `LEVEL ${this.game.level}`;
 
-                this.player = new Player(game.height, game.width, this.game);
-                this.portal = new Portal(game.height, game.width, 770, 275, this.levelCompleted)
+                this.player = new Player(game, this.game);
+                this.portal = new Portal(game, 770, 275, this.levelCompleted)
 
                 this.coins = [];
                 for (const i in this.data.coins) {
                     const coin = this.data.coins[i];
-                    this.coins.push(new Coin(this.game.height, this.game.width, coin.x, coin.y))
+                    this.coins.push(new Coin(this.game, coin.x, coin.y))
                 }
 
                 this.platforms = [];
                 for (const i in this.data.platforms) {
                     const platform = this.data.platforms[i];
-                    this.platforms.push(new Platform(this.game.height, this.game.width, platform.x, 150))
+                    this.platforms.push(new Platform(this.game, platform.x, 150))
                 }
 
                 this.gameObjects = [this.player, ...this.coins, ...this.platforms, this.portal];

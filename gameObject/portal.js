@@ -1,11 +1,11 @@
 import { detectCollision } from "../utility/collision.js";
 
 export default class Portal {
-    constructor(gameHeight, gameWidth, x, y, finishGame) {
+    constructor(game, x, y, finishGame) {
         this.finishGame = finishGame;
         
-        this.gameHeight = gameHeight;
-        this.gameWidth = gameWidth;
+        this.gameHeight = game.height;
+        this.gameWidth = game.width;
 
         this.height = 120;
         this.width = 30;
