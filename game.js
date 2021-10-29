@@ -7,6 +7,7 @@ export default class Game {
         this.switchScene = this.switchScene.bind(this);
         this.ctx = ctx
 
+        this.level = 1;
         this.count = 30;
         this.height = gameHeight;
         this.width = gameWidth;

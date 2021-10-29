@@ -1,7 +1,7 @@
 import { detectCollision } from "../utility/collision.js";
 
 export default class Platform {
-    constructor(gameHeight, gameWidth, x, y, width) {
+    constructor(gameHeight, gameWidth, x, y) {
         this.gameHeight = gameHeight;
         this.gameWidth = gameWidth;
 

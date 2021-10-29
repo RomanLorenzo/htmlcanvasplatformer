@@ -1,39 +1,51 @@
 import InputHandler from "../utility/inputHandler.js";
+import readTextFile from "../utility/readTextFile.js";
 import LevelComplete from '../scenes/levelComplete.js';
-import PlayerTest from "../gameObject/playerTest.js";
 import Player from "../gameObject/player.js";
 import Coin from "../gameObject/coin.js";
 import Portal from '../gameObject/portal.js';
 import Platform from "../gameObject/platform.js";
-
 export default class Level {
     constructor(game) {
-        this.game = game;
+        this.loaded = false;
+        fetch(`./saves/level${game.level}.json`)
+            .then(response => response.json())
+            .then(json => {
+                this.data = json;
 
-        this.levelCompleted = this.levelCompleted.bind(this);
+                this.game = game;
 
-        this.levelBackground = new Image();
-        this.levelBackground.src = './img/cityskyline.png';
-        this.levelText = 'LEVEL 1';
+                this.levelCompleted = this.levelCompleted.bind(this);
 
-        this.player = new Player(game.height, game.width, this.game);
-        this.portal = new Portal(game.height, game.width, 770, 275, this.levelCompleted)
+                this.levelBackground = new Image();
+                this.levelBackground.src = './img/cityskyline.png';
+                this.levelText = `LEVEL ${this.game.level}`;
 
-        this.coins = [];
-        for (let i = 0; i < 5; i++) {
-            this.coins.push(new Coin(this.game.height, this.game.width, 200 + (i * 100), 325))
-        }
+                this.player = new Player(game.height, game.width, this.game);
+                this.portal = new Portal(game.height, game.width, 770, 275, this.levelCompleted)
 
-        this.platforms = [];
-        for (let i = 0; i < 3; i++) {
-            this.platforms.push(new Platform(this.game.height, this.game.width, 100 + (i * 300), 0, 150))
-        }
+                this.coins = [];
+                for (const i in this.data.coins) {
+                    const coin = this.data.coins[i];
+                    this.coins.push(new Coin(this.game.height, this.game.width, coin.x, coin.y))
+                }
 
-        this.gameObjects = [this.player, ...this.coins, ...this.platforms, this.portal];
-        this.inputHandler = new InputHandler(this.player, this.platforms);
+                this.platforms = [];
+                for (const i in this.data.platforms) {
+                    const platform = this.data.platforms[i];
+                    this.platforms.push(new Platform(this.game.height, this.game.width, platform.x, 150))
+                }
+
+                this.gameObjects = [this.player, ...this.coins, ...this.platforms, this.portal];
+                this.inputHandler = new InputHandler(this.player, this.platforms);
+
+                this.loaded = true;
+            });
     }
 
     update(deltaTime) {
+        if (!this.loaded) return;
+
         this.gameObjects.forEach((item) => item.update(deltaTime, this));
         if (this.player.y > this.game.height - this.player.height + 500) {
             this.player.x = 50;
@@ -47,6 +59,8 @@ export default class Level {
     }
 
     draw(ctx) {
+        if (!this.loaded) return;
+
         ctx.drawImage(this.levelBackground, 0, 0, 1200, 600);
 
         ctx.fillStyle = 'black';

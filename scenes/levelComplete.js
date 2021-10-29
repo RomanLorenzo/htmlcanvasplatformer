@@ -1,18 +1,25 @@
 import Button from '../button.js';
+import Level from './level.js';
 export default class LevelComplete {
     constructor(game) {
+        this.onNext = this.onNext.bind(this);
         this.game = game;
 
         this.buttons = [];
         for (let i = 0; i < 2; i++) {
             const text = (i === 0) ? 'NEXT' : 'REDO';
-            this.buttons.push(new Button(text, this.game, () => console.log('hola'), 200, (250) + (i * 150)))
+            this.buttons.push(new Button(text, this.game, this.onNext, 200, (250) + (i * 150)))
         }
         this.elements = [...this.buttons];
     }
 
     update(deltaTime, mouseEvent, ctx) {
         this.elements.forEach(element => element.update(deltaTime, mouseEvent, ctx))
+    }
+
+    onNext() {
+        this.game.level += 1;
+        this.game.switchScene(new Level(this.game))
     }
 
     draw(ctx) {
