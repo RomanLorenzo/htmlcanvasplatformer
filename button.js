@@ -37,7 +37,7 @@ export default class Button {
         ctx.fill(this.path)
 
         ctx.fillStyle = 'black';
-        ctx.font = '50px arial'
+        ctx.font = '50px PixelGameFont'
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle'
 

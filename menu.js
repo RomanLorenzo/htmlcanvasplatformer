@@ -19,8 +19,8 @@ export default class Menu {
         this.gameHeight = gameHeight;
         this.gameWidth = gameWidth;
 
-        this.button = new Button('Play', gameHeight, gameWidth, ctx, onPlay, 200, 250);
-        this.button2 = new Button('Tutorial', gameHeight, gameWidth, ctx, null, 200, 400);
+        this.button = new Button('PLAY', gameHeight, gameWidth, ctx, onPlay, 200, 250);
+        this.button2 = new Button('TUTORIAL', gameHeight, gameWidth, ctx, null, 200, 400);
 
         this.elements = [this.button, this.button2];
     }
@@ -31,14 +31,14 @@ export default class Menu {
 
     draw(ctx) {
         ctx.fillStyle = 'black';
-        ctx.font = '100px arial'
+        ctx.font = '100px PixelGameFont'
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle'
 
         const fix = ctx.measureText("M").actualBoundingBoxDescent / 2;
         const textWidth = ctx.measureText(this.text).width;
 
-        ctx.fillText('Platformer', this.gameWidth / 2, 150)
+        ctx.fillText('PLATFORMER', this.gameWidth / 2, 150)
 
         this.elements.forEach(element => element.draw(ctx))
     }
