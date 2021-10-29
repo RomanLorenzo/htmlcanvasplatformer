@@ -1,13 +1,14 @@
-import Button from "../button.js";
-
-export default class Menu {
+import Button from '../button.js';
+export default class LevelComplete {
     constructor(game) {
         this.game = game;
 
-        this.button = new Button('RETRY', game.height, game.width, game.ctx, () => console.log('retry'), 50, 250);
-        this.button2 = new Button('NEXT', game.height, game.width, game.ctx, () => console.log('play'), 250, 400);
-
-        this.elements = [this.button, this.button2];
+        this.buttons = [];
+        for (let i = 0; i < 2; i++) {
+            const text = (i === 0) ? 'NEXT' : 'REDO';
+            this.buttons.push(new Button(text, this.game, () => console.log('hola'), 200, (250) + (i * 150)))
+        }
+        this.elements = [...this.buttons];
     }
 
     update(deltaTime, mouseEvent, ctx) {
@@ -16,14 +17,14 @@ export default class Menu {
 
     draw(ctx) {
         ctx.fillStyle = 'black';
-        ctx.font = '100px PixelGameFont'
+        ctx.font = '80px PixelGameFont'
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle'
 
         const fix = ctx.measureText("M").actualBoundingBoxDescent / 2;
         const textWidth = ctx.measureText(this.text).width;
 
-        ctx.fillText('PLATFORMER', this.game.width / 2, 150)
+        ctx.fillText('LEVEL COMPLETE', this.game.width / 2, 150)
 
         this.elements.forEach(element => element.draw(ctx))
     }

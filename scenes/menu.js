@@ -23,9 +23,9 @@ export default class Menu {
         this.game = game;
 
         this.button = new Button('PLAY', this.game, this.onPlay, 200, 250);
-        //this.button2 = new Button('TUTORIAL', gameHeight, gameWidth, null, 200, 400);
+        this.button2 = new Button('TUTORIAL', this.game, null, 200, 400);
 
-        this.elements = [this.button];
+        this.elements = [this.button, this.button2];
     }
 
     onPlay() {
