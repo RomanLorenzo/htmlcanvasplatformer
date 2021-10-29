@@ -1,15 +1,16 @@
 import Portal from './gameObject/portal.js';
-import Level from './level.js';
-import Menu from './menu.js';
+import Level from './scenes/level.js';
+import Menu from './scenes/menu.js';
 
 export default class Game {
-    constructor(gameHeight, gameWidth) {
-        this.onPlay = this.onPlay.bind(this);
+    constructor(gameHeight, gameWidth, ctx) {
+        this.switchScene = this.switchScene.bind(this);
+        this.ctx = ctx
 
         this.count = 30;
-        this.gameHeight = gameHeight;
-        this.gameWidth = gameWidth;
-        this.level = new Menu(gameHeight, gameWidth, null, this.onPlay)
+        this.height = gameHeight;
+        this.width = gameWidth;
+        this.scene = new Menu(null, this.switchScene, this)
 
         window.addEventListener('mousemove', (event) => {
             this.mouseEvent = event;
@@ -26,14 +27,18 @@ export default class Game {
     }
 
     onPlay() {
-        this.level = new Level(this.gameHeight, this.gameWidth, this)
+        this.scene = new Level(this.gameHeight, this.gameWidth, this)
+    }
+
+    switchScene(scene) {
+        this.scene = scene;
     }
 
     update(deltaTime, ctx) {
-        this.level.update(deltaTime, this.mouseEvent, ctx);
+        this.scene.update(deltaTime, this.mouseEvent, ctx);
     }
 
     draw(ctx) {
-        this.level.draw(ctx);
+        this.scene.draw(ctx);
     }
 }

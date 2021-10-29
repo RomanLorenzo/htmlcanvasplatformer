@@ -1,5 +1,6 @@
-import Button from "./button.js";
-import isHovered from "./utility/isHovered.js";
+import Button from "../button.js";
+import isHovered from "../utility/isHovered.js";
+import Level from "./level.js";
 
 class Square {
     constructor(x, y) {
@@ -14,15 +15,21 @@ class Square {
 }
 
 export default class Menu {
-    constructor(gameHeight, gameWidth, ctx, onPlay) {
-        this.onPlay = onPlay;
-        this.gameHeight = gameHeight;
-        this.gameWidth = gameWidth;
+    constructor(ctx, switchScene, game) {
+        this.onPlay = this.onPlay.bind(this);
+            
+        this.switchScene = switchScene;
 
-        this.button = new Button('PLAY', gameHeight, gameWidth, ctx, onPlay, 200, 250);
-        this.button2 = new Button('TUTORIAL', gameHeight, gameWidth, ctx, null, 200, 400);
+        this.game = game;
 
-        this.elements = [this.button, this.button2];
+        this.button = new Button('PLAY', this.game, this.onPlay, 200, 250);
+        //this.button2 = new Button('TUTORIAL', gameHeight, gameWidth, null, 200, 400);
+
+        this.elements = [this.button];
+    }
+
+    onPlay() {
+        this.switchScene(new Level(this.game))
     }
 
     update(deltaTime, mouseEvent, ctx) {
@@ -38,7 +45,7 @@ export default class Menu {
         const fix = ctx.measureText("M").actualBoundingBoxDescent / 2;
         const textWidth = ctx.measureText(this.text).width;
 
-        ctx.fillText('PLATFORMER', this.gameWidth / 2, 150)
+        ctx.fillText('PLATFORMER', this.game.width / 2, 150)
 
         this.elements.forEach(element => element.draw(ctx))
     }

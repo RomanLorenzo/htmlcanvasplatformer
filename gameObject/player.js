@@ -1,5 +1,5 @@
-import checkXCollision from "./checkXCollision.js";
-import checkYCollision from "./checkYCollision.js";
+import checkXCollision from "../utility/checkXCollision.js";
+import checkYCollision from "../utility/checkYCollision.js";
 
 export default class Player {
     constructor(gameHeight, gameWidth, game) {
@@ -104,7 +104,7 @@ export default class Player {
         level.platforms.forEach((platform) => {
             if (checkYCollision(this, platform, this.game) === 0) {
                 this.speedY = 0;
-                this.y = this.game.gameHeight - this.height - platform.height;
+                this.y = this.game.height - this.height - platform.height;
                 return;    
             }
         })

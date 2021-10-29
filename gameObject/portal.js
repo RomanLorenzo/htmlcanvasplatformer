@@ -10,8 +10,8 @@ export default class Portal {
         this.height = 120;
         this.width = 30;
 
-        this.x = gameWidth - this.width;
-        this.y = gameHeight - this.height;
+        this.x = x;
+        this.y = y;
 
         this.hidden = false;
     }
